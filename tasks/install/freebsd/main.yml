@@ -1,0 +1,7 @@
+- name: "Install the 'musicpd' package"
+  ansible.builtin.package:
+    name: musicpd
+    state: present
+  become: true
+  become_user: root
+
