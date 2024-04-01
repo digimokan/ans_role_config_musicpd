@@ -1,0 +1,3 @@
+# music directory that MPD will search, catalog, and play from
+musicpd_music_dir: "/home/{{ musicpd_user_name }}/Music"
+

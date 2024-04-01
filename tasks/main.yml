@@ -1,3 +1,6 @@
 - name: "Install Music Player Daemon"
   ansible.builtin.include_tasks: install/main.yml
 
+- name: "Configure Music Player Daemon"
+  ansible.builtin.include_tasks: configure/main.yml
+

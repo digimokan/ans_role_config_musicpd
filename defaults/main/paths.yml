@@ -1,0 +1,9 @@
+# main MPD user config dir
+musicpd_user_config_dir: "/home/{{ musicpd_user_name }}/.config/mpd"
+
+# MPD user playlists dir
+musicpd_user_playlists_dir: "{{ musicpd_user_config_dir }}/playlists"
+
+# main MPD config file path
+musicpd_user_config_file_path: "{{ musicpd_user_config_dir }}/mpd.conf"
+

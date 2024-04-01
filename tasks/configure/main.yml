@@ -1,0 +1,6 @@
+- name: "Configure all MPD settings"
+  ansible.builtin.include_tasks: settings/main.yml
+
+# - name: "Start and enable MPD service"
+#   ansible.builtin.include_tasks: service/main.yml
+

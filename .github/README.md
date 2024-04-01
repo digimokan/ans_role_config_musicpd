@@ -57,6 +57,7 @@ Install and configure the MPD Music Player Daemon.
            public: true
          vars:
            musicpd_user_name: "user2"
+           musicpd_music_dir: "/home/user2/Music"
    ```
 
 ## Role Options

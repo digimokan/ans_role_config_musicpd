@@ -1,0 +1,15 @@
+- name: "Create MPD user config dir at '{{ musicpd_user_config_dir }}'"
+  ansible.builtin.file:
+    path: "{{ musicpd_user_config_dir }}"
+    state: directory
+  become: true
+  become_user: "{{ musicpd_user_name }}"
+
+- name: "Write all MPD settings to '{{ musicpd_user_config_file_path }}'"
+  ansible.builtin.template:
+    dest: "{{ musicpd_user_config_file_path }}"
+    src: "mpd_conf.j2"
+    force: true
+  become: true
+  become_user: "{{ musicpd_user_name }}"
+

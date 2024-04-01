@@ -1,0 +1,10 @@
+- name: "Start 'mpd' service, and enable it to start on boot"
+  ansible.builtin.systemd_service:
+    name: mpd
+    state: started
+    enabled: true
+    scope: user
+  changed_when: false
+  become: true
+  become_user: "{{ musicpd_user_name }}"
+
