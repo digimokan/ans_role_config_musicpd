@@ -1,3 +1,6 @@
 # music directory that MPD will search, catalog, and play from
 musicpd_music_dir: "/home/{{ musicpd_user_name }}/Music"
 
+# log MPD status and events to musicpd_user_log_file_path
+musicpd_enable_logging: false
+

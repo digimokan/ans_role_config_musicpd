@@ -4,6 +4,21 @@ musicpd_user_config_dir: "/home/{{ musicpd_user_name }}/.config/mpd"
 # MPD user playlists dir
 musicpd_user_playlists_dir: "{{ musicpd_user_config_dir }}/playlists"
 
+# MPD user music database file path
+musicpd_user_music_db_file_path: "{{ musicpd_user_config_dir }}/database"
+
+# MPD user log file path
+musicpd_user_log_file_path: "{{ musicpd_user_config_dir }}/log"
+
+# MPD user Process ID file path (used for mpd --kill and some init scripts)
+musicpd_user_pid_file_path: "{{ musicpd_user_config_dir }}/pid"
+
+# MPD user state file path (to start MPD with last saved state)
+musicpd_user_state_file_path: "{{ musicpd_user_config_dir }}/state"
+
+# MPD user sticker DB file path (to manage dynamic info attached to songs)
+musicpd_user_sticker_db_file_path: "{{ musicpd_user_config_dir }}/sticker.sql"
+
 # main MPD config file path
 musicpd_user_config_file_path: "{{ musicpd_user_config_dir }}/mpd.conf"
 

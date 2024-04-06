@@ -9,46 +9,21 @@ music_directory "{{ musicpd_music_dir }}"
 
 # user playlists dir
 playlist_directory "{{ musicpd_user_playlists_dir }}"
-#
-# This setting sets the location of the MPD database. This file is used to
-# load the database at server start up and store the database while the
-# server is not up. This setting defaults to disabled which will allow
-# MPD to accept files over ipc socket (using file:// protocol) or streaming
-# files over an accepted protocol.
-#
-#db_file      "~/.mpd/database"
 
-# These settings are the locations for the daemon log files for the daemon.
-#
-# The special value "syslog" makes MPD use the local syslog daemon. This
-# setting defaults to logging to syslog.
-#
-# If you use systemd, do not configure a log_file.  With systemd, MPD
-# defaults to the systemd journal, which is fine.
-#
-#log_file     "~/.mpd/log"
+# MPD user music database file path
+db_file "{{ musicpd_user_music_db_file_path }}"
 
-# This setting sets the location of the file which stores the process ID
-# for use of mpd --kill and some init scripts. This setting is disabled by
-# default and the pid file will not be stored.
-#
-# If you use systemd, do not configure a pid_file.
-#
-#pid_file     "~/.mpd/pid"
+# log MPD status and events to musicpd_user_log_file_path
+{{ ('log_file "' + musicpd_user_log_file_path + '"') if musicpd_enable_logging else '# ...do not log' }}
 
-# This setting sets the location of the file which contains information about
-# most variables to get MPD back into the same general shape it was in before
-# it was brought down. This setting is disabled by default and the server
-# state will be reset on server start up.
-#
-#state_file     "~/.mpd/state"
-#
-# The location of the sticker database.  This is a database which
-# manages dynamic information attached to songs.
-#
-#sticker_file     "~/.mpd/sticker.sql"
-#
-###############################################################################
+# MPD user Process ID file path (used for mpd --kill and some init scripts)
+{{ '# ...do not use PID file with systemd' if (ansible_system == "Linux") else ('pid_file "' + musicpd_user_pid_file_path + '"') }}
+
+# MPD user state file path (to start MPD with last saved state)
+state_file "{{ musicpd_user_state_file_path }}"
+
+# MPD user sticker DB file path (to manage dynamic info attached to songs)
+sticker_file "{{ musicpd_user_sticker_db_file_path }}"
 
 
 # General music daemon options ################################################
