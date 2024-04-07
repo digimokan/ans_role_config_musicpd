@@ -1,6 +1,6 @@
 - name: "Start 'musicpd' service, and enable it to start on boot"
   ansible.builtin.service:
-    name: musicpd
+    name: mpd_user_svc
     state: started
     enabled: true
   changed_when: false

@@ -1,0 +1,6 @@
+- name: "Determine output sound server MPD config setting"
+  ansible.builtin.include_tasks: output.yml
+
+- name: "Write all settings to the MPD config file"
+  ansible.builtin.include_tasks: settings.yml
+

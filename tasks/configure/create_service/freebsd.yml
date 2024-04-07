@@ -1,0 +1,9 @@
+- name: "Create custom MPD service at '{{ musicpd_freebsd_rc_d_script_filepath }}'"
+  ansible.builtin.template:
+    dest: "{{ musicpd_freebsd_rc_d_script_filepath }}"
+    src: "mpd_user_svc_sh.j2"
+    force: true
+    mode: '0755'
+  become: true
+  become_user: root
+

@@ -1,0 +1,6 @@
+# custom MPD service file created for running MPD on FreeBSD
+musicpd_freebsd_rc_d_script_filepath: "/usr/local/etc/rc.d/mpd_user_svc"
+
+# config file for host info, network info, and services to start at boot
+musicpd_freebsd_rc_conf_filepath: "/etc/rc.conf"
+

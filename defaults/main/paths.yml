@@ -13,9 +13,6 @@ musicpd_user_playlists_dir: "{{ musicpd_user_config_dir }}/playlists"
 # MPD user log file path
 musicpd_user_log_file_path: "{{ musicpd_user_config_dir }}/log"
 
-# MPD user Process ID file path (used for mpd --kill and some init scripts)
-musicpd_user_pid_file_path: "{{ musicpd_user_config_dir }}/pid"
-
 # MPD user state file path (to start MPD with last saved state)
 musicpd_user_state_file_path: "{{ musicpd_user_config_dir }}/state"
 

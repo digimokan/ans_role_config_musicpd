@@ -1,0 +1,14 @@
+- name: "Configure the custom MPD service in '{{ musicpd_freebsd_rc_conf_filepath }}'"
+  community.general.sysrc:
+    path: "{{ musicpd_freebsd_rc_conf_filepath }}"
+    name: "{{ setting.name }}"
+    value: "{{ setting.val }}"
+    state: present
+  become: true
+  become_user: root
+  loop:
+    - { name: 'mpd_user_svc_user', val: "{{ musicpd_user_name }}", descrip: 'run service as this user' }
+    - { name: 'mpd_user_svc_group', val: "{{ musicpd_user_name }}", descrip: 'run service as this group' }
+  loop_control:
+    loop_var: setting
+

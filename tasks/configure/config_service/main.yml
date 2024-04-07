@@ -1,0 +1,4 @@
+- name: "Configure custom service for FreeBSD"
+  ansible.builtin.include_tasks: freebsd.yml
+  when: ansible_os_family == "FreeBSD"
+

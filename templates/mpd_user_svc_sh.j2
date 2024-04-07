@@ -1,0 +1,57 @@
+#!/bin/sh
+# vim: set filetype=sh:
+
+# ANSIBLE-MANAGED CONFIGURATION FILE
+# Refs:
+# --> https://cgit.freebsd.org/ports/tree/net/syncthing/files/syncthing.in?id=f26fa46f575d12242d48c139d214007798b631bc
+# --> https://man.freebsd.org/cgi/man.cgi?query=daemon
+# --> https://redbyte.eu/en/blog/supervised-freebsd-init-script-for-go-deamon/
+# --> https://blog.insane.engineer/post/freebsd_daemonize/
+# Purpose: provide a custom MPD service that executes as a normal user
+#
+# PROVIDE: mpd_user_svc
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# mpd_user_svc_enable (bool): Set to NO by default.
+#                             Set it to YES to enable mpd_user_svc.
+# mpd_user_svc_user (user):   Set user to run mpd_user_svc.
+#                             Default is "mpd".
+# mpd_user_svc_group (group): Set group to run mpd_user_svc.
+#                             Default is "mpd".
+
+# shellcheck source=/dev/null
+. /etc/rc.subr
+
+name='mpd_user_svc'
+# shellcheck disable=SC2034
+rcvar='mpd_user_svc_enable'
+
+load_rc_config "${name}"
+
+: "${mpd_user_svc_enable:="NO"}"
+: "${mpd_user_svc_user:="mpd"}"
+: "${mpd_user_svc_group=${mpd_user_svc_group:-$mpd_user_svc_user}}"
+
+pidfile='/var/run/mpd_user_svc.pid'
+procname='/usr/local/bin/musicpd'
+# shellcheck disable=SC2034
+command='/usr/sbin/daemon'
+# shellcheck disable=SC2034,SC2154
+command_args="--user ${mpd_user_svc_user} --child-pidfile ${pidfile} --close-fds ${procname} ${mpd_user_svc_args}"
+
+# shellcheck disable=SC2034
+start_precmd='mpd_user_svc_startprecmd'
+
+mpd_user_svc_startprecmd()
+{
+  if [ ! -e "${pidfile}" ]; then
+    install -o "${mpd_user_svc_user}" -g "${mpd_user_svc_group}" /dev/null "${pidfile}";
+  fi
+}
+
+run_rc_command "${1}"
+

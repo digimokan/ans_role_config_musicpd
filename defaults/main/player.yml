@@ -7,10 +7,6 @@ musicpd_enable_logging: true
 # if enabled, log level is 'notice', 'info', 'verbose', 'warning' or 'error'
 musicpd_logging_level: 'verbose'
 
-# make MPD run as this user and group (i.e. change its user/group ID on init)
-musicpd_run_as_user: 'nobody'
-musicpd_run_as_group: 'nogroup'
-
 # on startup, immediately start playback
 musicpd_start_playback_on_startup: false
 
