@@ -14,7 +14,9 @@ playlist_directory "{{ musicpd_user_playlists_dir }}"
 db_file "{{ musicpd_user_music_db_file_path }}"
 
 # log MPD status and events to musicpd_user_log_file_path
+# logging_level is 'notice', 'info', 'verbose', 'warning' or 'error'
 {{ ('log_file "' + musicpd_user_log_file_path + '"') if musicpd_enable_logging else '# ...do not log' }}
+log_level "{{ musicpd_logging_level }}"
 
 # MPD user Process ID file path (used for mpd --kill and some init scripts)
 {{ '# ...do not use PID file with systemd' if (ansible_system == "Linux") else ('pid_file "' + musicpd_user_pid_file_path + '"') }}
@@ -25,45 +27,10 @@ state_file "{{ musicpd_user_state_file_path }}"
 # MPD user sticker DB file path (to manage dynamic info attached to songs)
 sticker_file "{{ musicpd_user_sticker_db_file_path }}"
 
+# make MPD run as this user and group (i.e. change its user/group ID on init)
+user "{{ musicpd_run_as_user }}"
+group "{{ musicpd_run_as_group }}"
 
-# General music daemon options ################################################
-#
-# This setting specifies the user that MPD will run as. MPD should never run as
-# root and you may use this setting to make MPD change its user ID after
-# initialization. This setting is disabled by default and MPD is run as the
-# current user.
-#
-#user       "nobody"
-#
-# This setting specifies the group that MPD will run as. If not specified
-# primary group of user specified with "user" setting will be used (if set).
-# This is useful if MPD needs to be a member of group such as "audio" to
-# have permission to use sound card.
-#
-#group        "nogroup"
-#
-# This setting sets the address for the daemon to listen on. Careful attention
-# should be paid if this is assigned to anything other than the default, any.
-# This setting can deny access to control of the daemon. Not effective if
-# systemd socket activation is in use.
-#
-# For network
-#bind_to_address    "any"
-#
-# And for Unix Socket
-#bind_to_address    "~/.mpd/socket"
-#
-# This setting is the TCP port that is desired for the daemon to get assigned
-# to.
-#
-#port       "6600"
-#
-# Suppress all messages below the given threshold.  Use "verbose" for
-# troubleshooting. Available setting arguments are "notice", "info", "verbose",
-# "warning" and "error".
-#
-#log_level      "notice"
-#
 # Setting "restore_paused" to "yes" puts MPD into pause mode instead
 # of starting playback after startup.
 #

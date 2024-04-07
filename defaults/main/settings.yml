@@ -2,5 +2,11 @@
 musicpd_music_dir: "/home/{{ musicpd_user_name }}/Music"
 
 # log MPD status and events to musicpd_user_log_file_path
-musicpd_enable_logging: false
+# logging_level is 'notice', 'info', 'verbose', 'warning' or 'error'
+musicpd_enable_logging: true
+musicpd_logging_level: 'verbose'
+
+# make MPD run as this user and group (i.e. change its user/group ID on init)
+musicpd_run_as_user: 'nobody'
+musicpd_run_as_group: 'nogroup'
 
