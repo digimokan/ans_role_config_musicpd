@@ -44,43 +44,10 @@ metadata_to_use "{{ musicpd_track_tag_list }}"
 # detect changes in music_directory and automatically update the MPD music DB
 auto_update "{{ 'yes' if musicpd_update_db_on_filesystem_changes else 'no' }}"
 
-# Limit the depth of the directories being watched, 0 means only watch
-# the music directory itself.  There is no limit by default.
-#
-#auto_update_depth "3"
-#
-###############################################################################
-
-
-# Symbolic link behavior ######################################################
-#
-# If this setting is set to "yes", MPD will discover audio files by following
-# symbolic links outside of the configured music_directory.
-#
-#follow_outside_symlinks  "yes"
-#
-# If this setting is set to "yes", MPD will discover audio files by following
-# symbolic links inside of the configured music_directory.
-#
-#follow_inside_symlinks   "yes"
-#
-###############################################################################
-
-
-# Zeroconf / Avahi Service Discovery ##########################################
-#
-# If this setting is set to "yes", service information will be published with
-# Zeroconf / Avahi.
-#
-#zeroconf_enabled   "yes"
-#
-# The argument to this setting will be the Zeroconf / Avahi unique name for
-# this MPD server on the network. %h will be replaced with the hostname.
-#
-#zeroconf_name      "Music Player @ %h"
-#
-###############################################################################
-
+# publish service info with zeroconf/avahi
+zeroconf_enabled "{{ 'yes' if musicpd_publish_service_with_avahi else 'no' }}"
+# set published avahi server name (%h expands to hostname)
+zeroconf_name "{{ musicpd_avahi_mpd_server_name }}"
 
 # Permissions #################################################################
 #

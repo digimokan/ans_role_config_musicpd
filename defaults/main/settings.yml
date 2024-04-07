@@ -23,3 +23,8 @@ musicpd_track_tag_list: 'albumartist,artist,album,title,track,name,genre,date,co
 # detect changes in musicpd_music_dir and automatically update the MPD music DB
 musicpd_update_db_on_filesystem_changes: true
 
+# publish service info with zeroconf/avahi
+musicpd_publish_service_with_avahi: false
+# set published avahi server name (%h expands to hostname)
+musicpd_avahi_mpd_server_name: 'Music Player Daemon @ %h'
+
