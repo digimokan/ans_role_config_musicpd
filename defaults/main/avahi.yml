@@ -1,0 +1,6 @@
+# publish service info with zeroconf/avahi
+musicpd_publish_service_with_avahi: false
+
+# set published avahi server name (%h expands to hostname)
+musicpd_avahi_mpd_server_name: 'Music Player Daemon @ %h'
+

@@ -1,11 +1,14 @@
 # main MPD user config dir
 musicpd_user_config_dir: "/home/{{ musicpd_user_name }}/.config/mpd"
 
-# MPD user playlists dir
-musicpd_user_playlists_dir: "{{ musicpd_user_config_dir }}/playlists"
+# main MPD config file path
+musicpd_user_config_file_path: "{{ musicpd_user_config_dir }}/mpd.conf"
 
 # MPD user music database file path
 musicpd_user_music_db_file_path: "{{ musicpd_user_config_dir }}/database"
+
+# MPD user playlists dir
+musicpd_user_playlists_dir: "{{ musicpd_user_config_dir }}/playlists"
 
 # MPD user log file path
 musicpd_user_log_file_path: "{{ musicpd_user_config_dir }}/log"
@@ -18,7 +21,4 @@ musicpd_user_state_file_path: "{{ musicpd_user_config_dir }}/state"
 
 # MPD user sticker DB file path (to manage dynamic info attached to songs)
 musicpd_user_sticker_db_file_path: "{{ musicpd_user_config_dir }}/sticker.sql"
-
-# main MPD config file path
-musicpd_user_config_file_path: "{{ musicpd_user_config_dir }}/mpd.conf"
 

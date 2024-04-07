@@ -2,8 +2,9 @@
 musicpd_music_dir: "/home/{{ musicpd_user_name }}/Music"
 
 # log MPD status and events to musicpd_user_log_file_path
-# logging_level is 'notice', 'info', 'verbose', 'warning' or 'error'
 musicpd_enable_logging: true
+
+# if enabled, log level is 'notice', 'info', 'verbose', 'warning' or 'error'
 musicpd_logging_level: 'verbose'
 
 # make MPD run as this user and group (i.e. change its user/group ID on init)
@@ -22,12 +23,4 @@ musicpd_track_tag_list: 'albumartist,artist,album,title,track,name,genre,date,co
 
 # detect changes in musicpd_music_dir and automatically update the MPD music DB
 musicpd_update_db_on_filesystem_changes: true
-
-# publish service info with zeroconf/avahi
-musicpd_publish_service_with_avahi: false
-# set published avahi server name (%h expands to hostname)
-musicpd_avahi_mpd_server_name: 'Music Player Daemon @ %h'
-
-# send MPD output to this server: 'alsa', 'pulseaudio', 'pipewire', or 'oss'
-musicpd_output_sound_server_name: 'none'
 

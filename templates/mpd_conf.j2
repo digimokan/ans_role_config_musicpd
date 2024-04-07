@@ -4,19 +4,16 @@
 # Ref: https://github.com/MusicPlayerDaemon/MPD/blob/master/doc/mpdconf.example
 #
 
-# music directory that MPD will search, catalog, and play from
-music_directory "{{ musicpd_music_dir }}"
-
-# user playlists dir
-playlist_directory "{{ musicpd_user_playlists_dir }}"
+# FILE PATHS ###################################################################
 
 # MPD user music database file path
 db_file "{{ musicpd_user_music_db_file_path }}"
 
+# user playlists dir
+playlist_directory "{{ musicpd_user_playlists_dir }}"
+
 # log MPD status and events to musicpd_user_log_file_path
-# logging_level is 'notice', 'info', 'verbose', 'warning' or 'error'
 {{ ('log_file "' + musicpd_user_log_file_path + '"') if musicpd_enable_logging else '# ...do not log' }}
-log_level "{{ musicpd_logging_level }}"
 
 # MPD user Process ID file path (used for mpd --kill and some init scripts)
 {{ '# ...do not use PID file with systemd' if (ansible_system == "Linux") else ('pid_file "' + musicpd_user_pid_file_path + '"') }}
@@ -26,6 +23,14 @@ state_file "{{ musicpd_user_state_file_path }}"
 
 # MPD user sticker DB file path (to manage dynamic info attached to songs)
 sticker_file "{{ musicpd_user_sticker_db_file_path }}"
+
+# PLAYER #######################################################################
+
+# music directory that MPD will search, catalog, and play from
+music_directory "{{ musicpd_music_dir }}"
+
+# if enabled, log level is 'notice', 'info', 'verbose', 'warning' or 'error'
+log_level "{{ musicpd_logging_level }}"
 
 # make MPD run as this user and group (i.e. change its user/group ID on init)
 user "{{ musicpd_run_as_user }}"
@@ -44,8 +49,11 @@ metadata_to_use "{{ musicpd_track_tag_list }}"
 # detect changes in music_directory and automatically update the MPD music DB
 auto_update "{{ 'yes' if musicpd_update_db_on_filesystem_changes else 'no' }}"
 
+# AVAHI ########################################################################
+
 # publish service info with zeroconf/avahi
 zeroconf_enabled "{{ 'yes' if musicpd_publish_service_with_avahi else 'no' }}"
+
 # set published avahi server name (%h expands to hostname)
 zeroconf_name "{{ musicpd_avahi_mpd_server_name }}"
 

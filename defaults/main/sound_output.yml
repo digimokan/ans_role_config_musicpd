@@ -1,0 +1,3 @@
+# send MPD output to this server: 'alsa', 'pulseaudio', 'pipewire', or 'oss'
+musicpd_output_sound_server_name: 'none'
+
