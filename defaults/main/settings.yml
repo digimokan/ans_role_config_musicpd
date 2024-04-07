@@ -20,3 +20,6 @@ musicpd_save_absolute_paths_for_playlists: true
 # see https://mpd.readthedocs.io/en/latest/protocol.html#tags
 musicpd_track_tag_list: 'albumartist,artist,album,title,track,name,genre,date,composer,performer,disc,comment'
 
+# detect changes in musicpd_music_dir and automatically update the MPD music DB
+musicpd_update_db_on_filesystem_changes: true
+
