@@ -10,3 +10,9 @@ musicpd_logging_level: 'verbose'
 musicpd_run_as_user: 'nobody'
 musicpd_run_as_group: 'nogroup'
 
+# on startup, immediately start playback
+musicpd_start_playback_on_startup: false
+
+# save playlists with absolute paths usable by other music players
+musicpd_save_absolute_paths_for_playlists: true
+

@@ -31,16 +31,12 @@ sticker_file "{{ musicpd_user_sticker_db_file_path }}"
 user "{{ musicpd_run_as_user }}"
 group "{{ musicpd_run_as_group }}"
 
-# Setting "restore_paused" to "yes" puts MPD into pause mode instead
-# of starting playback after startup.
-#
-#restore_paused "no"
-#
-# This setting enables MPD to create playlists in a format usable by other
-# music players.
-#
-#save_absolute_paths_in_playlists "no"
-#
+# on startup, immediately start playback
+restore_paused "{{ 'no' if musicpd_start_playback_on_startup else 'yes' }}"
+
+# save playlists with absolute paths usable by other music players
+save_absolute_paths_in_playlists "{{ 'yes' if musicpd_save_absolute_paths_for_playlists else 'no' }}"
+
 # This setting defines a list of tag types that will be extracted during the
 # audio file discovery process. The complete list of possible values can be
 # found in the user manual.
