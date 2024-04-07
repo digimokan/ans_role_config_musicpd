@@ -28,3 +28,6 @@ musicpd_publish_service_with_avahi: false
 # set published avahi server name (%h expands to hostname)
 musicpd_avahi_mpd_server_name: 'Music Player Daemon @ %h'
 
+# send MPD output to this server: 'alsa', 'pulseaudio', 'pipewire', or 'oss'
+musicpd_output_sound_server_name: 'none'
+

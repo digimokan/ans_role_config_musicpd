@@ -1,0 +1,33 @@
+- name: "Check that 'musicpd_output_sound_server_name' is set to a valid option"
+  ansible.builtin.assert:
+    that: [ (musicpd_output_sound_server_name == 'alsa') or
+            (musicpd_output_sound_server_name == 'pulseaudio') or
+            (musicpd_output_sound_server_name == 'pipewire') or
+            (musicpd_output_sound_server_name == 'oss') ]
+    fail_msg: "musicpd_output_sound_server_name is not set to a valid option"
+    quiet: true
+
+- name: "Set sound server output settings for ALSA"
+  ansible.builtin.set_fact:
+    musicpd_audio_output_type: 'alsa'
+    musicpd_audio_output_name: 'ALSA sound card'
+  when: musicpd_output_sound_server_name == 'alsa'
+
+- name: "Set sound server output settings for PulseAudio"
+  ansible.builtin.set_fact:
+    musicpd_audio_output_type: 'pulse'
+    musicpd_audio_output_name: 'pulse audio'
+  when: musicpd_output_sound_server_name == 'pulseaudio'
+
+- name: "Set sound server output settings for PipeWire"
+  ansible.builtin.set_fact:
+    musicpd_audio_output_type: 'pipewire'
+    musicpd_audio_output_name: 'PipeWire Sound Server'
+  when: musicpd_output_sound_server_name == 'pipewire'
+
+- name: "Set sound server output settings for OSS"
+  ansible.builtin.set_fact:
+    musicpd_audio_output_type: 'oss'
+    musicpd_audio_output_name: 'Default OSS Device'
+  when: musicpd_output_sound_server_name == 'oss'
+
