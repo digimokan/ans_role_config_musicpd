@@ -41,7 +41,7 @@ procname='/usr/local/bin/musicpd'
 # shellcheck disable=SC2034
 command='/usr/sbin/daemon'
 # shellcheck disable=SC2034,SC2154
-command_args="--user ${mpd_user_svc_user} --child-pidfile ${pidfile} --close-fds ${procname} ${mpd_user_svc_args}"
+command_args="--change-dir --close-fds --child-pidfile ${pidfile} ${procname} ${mpd_user_svc_args}"
 
 # shellcheck disable=SC2034
 start_precmd='mpd_user_svc_startprecmd'
