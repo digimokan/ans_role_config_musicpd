@@ -1,5 +1,6 @@
 #!/bin/sh
 # vim: set filetype=sh:
+# shellcheck disable=SC2034
 
 # ANSIBLE-MANAGED CONFIGURATION FILE
 # Refs:
@@ -27,31 +28,19 @@
 . /etc/rc.subr
 
 name='mpd_user_svc'
-# shellcheck disable=SC2034
+procname='/usr/local/bin/musicpd'
 rcvar='mpd_user_svc_enable'
 
 load_rc_config "${name}"
-
 : "${mpd_user_svc_enable:="NO"}"
 : "${mpd_user_svc_user:="mpd"}"
 : "${mpd_user_svc_group=${mpd_user_svc_group:-$mpd_user_svc_user}}"
 
-pidfile='/var/run/mpd_user_svc.pid'
-procname='/usr/local/bin/musicpd'
-# shellcheck disable=SC2034
+# note: mpd doesn't seem to find ~/.mpdconf when run with /usr/sbin/daemon
 command='/usr/sbin/daemon'
-# shellcheck disable=SC2034,SC2154
-command_args="--change-dir --close-fds --child-pidfile ${pidfile} ${procname} ${mpd_user_svc_args}"
-
-# shellcheck disable=SC2034
-start_precmd='mpd_user_svc_startprecmd'
-
-mpd_user_svc_startprecmd()
-{
-  if [ ! -e "${pidfile}" ]; then
-    install -o "${mpd_user_svc_user}" -g "${mpd_user_svc_group}" /dev/null "${pidfile}";
-  fi
-}
+user_conf_file="/home/${mpd_user_svc_user}/.config/mpd/mpd.conf"
+command_args="--close-fds ${procname} ${user_conf_file}"
+required_files="${user_conf_file}"
 
 run_rc_command "${1}"
 
