@@ -58,6 +58,7 @@ Install and configure the MPD Music Player Daemon.
          vars:
            musicpd_user_name: "user2"
            musicpd_music_dir: "/home/user2/Music"
+           musicpd_output_sound_server_name: "pulseaudio"
    ```
 
 ## Role Options
