@@ -45,7 +45,7 @@ auto_update "{{ 'yes' if musicpd_update_db_on_filesystem_changes else 'no' }}"
 # SERVICE ######################################################################
 
 # run service and listen on this port
-port {{ musicpd_service_listen_port }}
+port "{{ musicpd_service_listen_port }}"
 
 # publish service info with zeroconf/avahi
 zeroconf_enabled "{{ 'yes' if musicpd_publish_service_with_avahi else 'no' }}"
