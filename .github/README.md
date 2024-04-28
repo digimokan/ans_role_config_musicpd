@@ -70,6 +70,8 @@ See the role `defaults` files for main role vars listings:
 Define these _required_ vars for the role:
 
   * `musicpd_user_name`: user name of main MPD user
+  * `musicpd_music_dir`: dir where user's music tracks are stored
+  * `musicpd_output_sound_server_name`: see [defaults](../defaults/main/sound_output.yml)
 
 ## Contributing
 
