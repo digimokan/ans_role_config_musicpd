@@ -1,3 +1,6 @@
+# run service and listen on this port
+musicpd_service_listen_port: 6600
+
 # publish service info with zeroconf/avahi
 musicpd_publish_service_with_avahi: false
 
