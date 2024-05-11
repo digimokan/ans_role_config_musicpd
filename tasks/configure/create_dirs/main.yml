@@ -5,10 +5,3 @@
   become: true
   become_user: "{{ musicpd_user_name }}"
 
-- name: "Create MPD user playlists dir at '{{ musicpd_user_playlists_dir }}'"
-  ansible.builtin.file:
-    path: "{{ musicpd_user_playlists_dir }}"
-    state: directory
-  become: true
-  become_user: "{{ musicpd_user_name }}"
-
